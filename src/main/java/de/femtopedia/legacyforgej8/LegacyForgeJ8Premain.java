@@ -6,6 +6,8 @@ import de.femtopedia.legacyforgej8.transformers.java9.JarDiscovererTransformer;
 import de.femtopedia.legacyforgej8.transformers.libs.CoreFMLLibrariesTransformer;
 import de.femtopedia.legacyforgej8.transformers.libs.RelaunchLibraryManagerTransformer;
 import de.femtopedia.legacyforgej8.transformers.mcpc.FMLRelauncherTransformer;
+import de.femtopedia.legacyforgej8.transformers.miscperipherals.BlockTurtleTransformerTransformer;
+import de.femtopedia.legacyforgej8.transformers.miscperipherals.TileEntityTurtleTransformerTransformer;
 import de.femtopedia.legacyforgej8.transformers.opcodes.ASMTransformerTransformer;
 import de.femtopedia.legacyforgej8.transformers.opcodes.EventTransformerTransformer;
 import de.femtopedia.legacyforgej8.transformers.opcodes.MLDetectorClassVisitorTransformer;
@@ -41,6 +43,11 @@ public class LegacyForgeJ8Premain implements Runnable {
         ClassTransformer.register(new JarDiscovererTransformer());
 
         log.info("Skipping some unsupported Java 9+ entries...");
+
+        ClassTransformer.register(new BlockTurtleTransformerTransformer());
+        ClassTransformer.register(new TileEntityTurtleTransformerTransformer());
+
+        log.info("Patched mods still relying on ASM 4.");
 
         ClassTransformer.register(new RelaunchClassLoaderTransformer());
 
