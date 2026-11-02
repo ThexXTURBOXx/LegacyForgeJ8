@@ -20,8 +20,9 @@ public class API {
         // Add known candidates
         addClassLoaderExclusion("de.femtopedia.legacyforgej8."); // LegacyForgeJ8
         addTransformerExclusion("de.femtopedia.hufixes."); // HexxitUltimateFixes
-        addTransformerExclusion("de.femtopedia.nil125fix."); // NilFix
         addTransformerExclusion("net.scoobis.nilmenu."); // NilMenu
+
+        addRegexTransformerExclusion(Pattern.compile("de\\.femtopedia\\.nil.*fix\\..*")); // NilFix
     }
 
     /**
