@@ -8,6 +8,8 @@ Nilmod enabling Forge on Legacy Minecraft (1.3.2 up to 1.5.2) to load mods compi
 - Allow Java 8 in MCPC+
 - Exclude certain Java 9+ class files from loading (fixes crashes and errors)
 - Update to ASM 5.2 (from 4.0; provides proper Java 8 support)
+- Patch known mods to support ASM 5
+- Add own API for excluding classes from transformer and class loader
 <!-- Not anymore: - Update BouncyCastle to 1.69 (from 1.47; fixes many vulnerabilities) -->
 - Add Gson as an additional library (does not make anything worse, but may be nice to use for some legacy modders as a dependency that is now built-in)
 - Download libraries and dependencies from an actively working mirror
