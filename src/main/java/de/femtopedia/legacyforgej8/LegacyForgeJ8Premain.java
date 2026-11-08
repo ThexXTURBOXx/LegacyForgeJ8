@@ -20,7 +20,10 @@ import nilloader.api.NilLogger;
 
 public class LegacyForgeJ8Premain implements Runnable {
 
-    public static final NilLogger log = NilLogger.get("LegacyForgeJ8");
+    public static final String MOD_ID = "legacyforgej8";
+    public static final String MOD_NAME = "LegacyForgeJ8";
+
+    public static final NilLogger log = NilLogger.get(MOD_NAME);
 
     @Override
     public void run() {
