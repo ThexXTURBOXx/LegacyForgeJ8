@@ -1,6 +1,7 @@
 package de.femtopedia.legacyforgej8.transformers.miscperipherals;
 
 import de.femtopedia.legacyforgej8.MiniPlusTransformer;
+import nilloader.api.lib.asm.Opcodes;
 import nilloader.api.lib.mini.PatchContext;
 import nilloader.api.lib.mini.PatchContext.SearchResult;
 import nilloader.api.lib.mini.annotation.Patch;
@@ -20,7 +21,7 @@ public class TileEntityTurtleTransformerTransformer extends MiniPlusTransformer 
             res.jumpAfter();
             ctx.add(
                     POP(),
-                    LDC(327680)
+                    LDC(Opcodes.ASM5)
             );
         }
     }
