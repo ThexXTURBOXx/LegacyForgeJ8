@@ -12,7 +12,7 @@ import nilloader.api.lib.mini.annotation.Patch;
 public class JarDiscovererTransformer extends MiniPlusTransformer {
 
     @SuppressWarnings("deprecation")
-    @Patch.Method.AffectsControlFlow
+    //@Patch.Method.AffectsControlFlow // Frames are recomputed in JsrInstructionTransformer
     @Patch.Method("discover(Lcpw/mods/fml/common/discovery/ModCandidate;Lcpw/mods/fml/common/discovery/ASMDataTable;)" +
                   "Ljava/util/List;")
     public void skipModuleInfos(PatchContext ctx) {

@@ -19,7 +19,7 @@ public class RelaunchClassLoaderTransformer extends MiniPlusTransformer {
         );
     }
 
-    @Patch.Method.AffectsControlFlow
+    //@Patch.Method.AffectsControlFlow // Frames are recomputed in JsrInstructionTransformer
     @Patch.Method("findClass(Ljava/lang/String;)Ljava/lang/Class;")
     public void injectCLRegexAPI(PatchContext ctx) {
         LabelNode Lreturn = new LabelNode();
@@ -45,7 +45,7 @@ public class RelaunchClassLoaderTransformer extends MiniPlusTransformer {
         );
     }
 
-    @Patch.Method.AffectsControlFlow
+    //@Patch.Method.AffectsControlFlow // Frames are recomputed in JsrInstructionTransformer
     @Patch.Method("findClass(Ljava/lang/String;)Ljava/lang/Class;")
     public void injectTFRegexAPI(PatchContext ctx) {
         LabelNode Lreturn = new LabelNode();

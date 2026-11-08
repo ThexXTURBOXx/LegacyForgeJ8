@@ -3,6 +3,7 @@ package de.femtopedia.legacyforgej8;
 import de.femtopedia.legacyforgej8.transformers.api.RelaunchClassLoaderTransformer;
 import de.femtopedia.legacyforgej8.transformers.asm.MethodInsnNodeTransformer;
 import de.femtopedia.legacyforgej8.transformers.java9.JarDiscovererTransformer;
+import de.femtopedia.legacyforgej8.transformers.jsr.JsrInstructionTransformer;
 import de.femtopedia.legacyforgej8.transformers.libs.CoreFMLLibrariesTransformer;
 import de.femtopedia.legacyforgej8.transformers.libs.RelaunchLibraryManagerTransformer;
 import de.femtopedia.legacyforgej8.transformers.mcpc.FMLRelauncherTransformer;
@@ -27,6 +28,8 @@ public class LegacyForgeJ8Premain implements Runnable {
 
     @Override
     public void run() {
+        ClassTransformer.register(new JsrInstructionTransformer());
+
         ClassTransformer.register(new CoreFMLLibrariesTransformer());
         ClassTransformer.register(new RelaunchLibraryManagerTransformer());
 
