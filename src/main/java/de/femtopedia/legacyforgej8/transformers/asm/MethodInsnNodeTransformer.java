@@ -1,6 +1,7 @@
 package de.femtopedia.legacyforgej8.transformers.asm;
 
 import de.femtopedia.legacyforgej8.MiniPlusTransformer;
+import nilloader.api.lib.asm.Opcodes;
 import nilloader.api.lib.asm.tree.LabelNode;
 import nilloader.api.lib.mini.PatchContext;
 import nilloader.api.lib.mini.annotation.Patch;
@@ -19,7 +20,7 @@ public class MethodInsnNodeTransformer extends MiniPlusTransformer {
         ctx.add(
                 ALOAD(0),
                 ILOAD(1),
-                SIPUSH(185),
+                SIPUSH(Opcodes.INVOKEINTERFACE),
                 IF_ICMPNE(L0),
                 ICONST_1(),
                 GOTO(Lcontinue),
