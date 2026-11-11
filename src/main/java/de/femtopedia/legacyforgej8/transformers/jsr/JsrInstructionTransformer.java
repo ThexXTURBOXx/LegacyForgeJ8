@@ -1,6 +1,8 @@
 package de.femtopedia.legacyforgej8.transformers.jsr;
 
-import nilloader.api.ClassTransformer;
+import java.util.HashSet;
+import java.util.Set;
+import nilloader.api.ClassRetransformer;
 import nilloader.api.NonLoadingClassWriter;
 import nilloader.api.lib.asm.ClassReader;
 import nilloader.api.lib.asm.ClassVisitor;
@@ -9,13 +11,18 @@ import nilloader.api.lib.asm.MethodVisitor;
 import nilloader.api.lib.asm.Opcodes;
 import nilloader.api.lib.asm.commons.JSRInlinerAdapter;
 
-public class JsrInstructionTransformer implements ClassTransformer {
+public class JsrInstructionTransformer implements ClassRetransformer {
+
+    public static final Set<String> targets = new HashSet<>();
+
+    static {
+        targets.add("cpw/mods/fml/common/discovery/JarDiscoverer");
+        targets.add("cpw/mods/fml/relauncher/RelaunchClassLoader");
+    }
 
     @Override
     public byte[] transform(ClassLoader loader, String className, byte[] originalData) {
-        if (!className.equals("cpw/mods/fml/common/discovery/JarDiscoverer") &&
-            !className.equals("cpw/mods/fml/relauncher/RelaunchClassLoader"))
-            return originalData;
+        if (!targets.contains(className)) return originalData;
         return applyJsrTransformation(loader, originalData);
     }
 
@@ -36,6 +43,11 @@ public class JsrInstructionTransformer implements ClassTransformer {
             }
         }, ClassReader.EXPAND_FRAMES);
         return cw.toByteArray();
+    }
+
+    @Override
+    public Set<String> getTargets() {
+        return targets;
     }
 
 }
