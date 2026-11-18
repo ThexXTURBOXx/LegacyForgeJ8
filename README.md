@@ -16,10 +16,43 @@ Nilmod enabling Forge on Legacy Minecraft (1.3.2 up to 1.5.2) to load mods compi
 - Increase hardcoded download limits
 - Fix a few other probable crashes with unknown/invalid class files
 
+## Installing in Minecraft 1.6+
+
+In Minecraft 1.6, library management has changed with the new launcher. For this reason, LegacyForgeJ8 cannot just replace the libraries in runtime. It needs your help. **Older versions of Minecraft do not need this special treatment!**  
+For this, read the following additional setup instructions carefully. Depending on which launcher you use for Minecraft (or whether you want to use the mod on a server), the instructions will differ a bit. I highly recommend Prism Launcher since it is much easier to deal with than the clunky Vanilla Launcher.
+
+### Prism and other MultiMC-like launchers
+
+1. Select your Minecraft instance.
+2. Click on "Edit" in the sidebar on the right. A window should appear.
+3. Click on "Version" in the sidebar on the left.
+4. In the list, select "Forge" and click on "Customize", then "Edit" in the sidebar on the right. An editor should open.
+5. Search for a line similar to `"name": "org.ow2.asm:asm-all:4.1"`.
+6. Replace the `4.1` by `5.2`. No need to replace it, if it is already some version starting with a `5` such as `5.0.3`.
+7. You can now close the editor and launch the Minecraft instance.
+
+### Vanilla launcher
+
+1. Play the release you want to install LegacyForgeJ8 into at least once and install NilLoader, Forge and any other prerequisites BEFORE continuing here.
+2. Go to your `.minecraft` folder. Since there are so many ways to find it, please search for ways to find it yourself.
+3. In the `.minecraft` folder, go into the `versions` folder. After installing Forge, you should have a folder such as `1.6.4-Forge9.11.1.1345` in there. Go into that one.
+4. You should see two files. One of them has the file extension `.json`. Open that one in an editor.
+5. Search for a line similar to `"name": "org.ow2.asm:asm-all:4.1"`.
+6. Replace the `4.1` (or similar version) by `5.2`.
+7. You can now close the editor. If your Minecraft launcher is still open, you need to close it as well and re-open it.
+8. In your `.minecraft` folder, navigate to `libraries/org/ow2/asm/asm-all` and create a folder called `5.2` there.
+9. Download [`asm-all-5.2.jar`](https://repo1.maven.org/maven2/org/ow2/asm/asm-all/5.2/asm-all-5.2.jar) and put it into this folder.
+10. You can now launch the Minecraft instance.
+
+### Servers
+
+You need to find the version `json` file. Most likely, it is located within the Forge server jar file. You can open it using any program that can open zip files (such as WinRAR or PeaZip) and search for the version `json` file in there. Once you found it, you can follow the instructions for the Vanilla launcher from step 5. Instead of the `.minecraft` directory, look in your server directory.  
+If you are using KCauldron, Cauldron, MCPC+ or similar "SpigotForge" variants, the version `json` file may be even more hidden in some jar file within the `libraries` folder, `bin` folder or somewhere different. Depending on the variant, you need to put the `asm-all-5.2.jar` file also somewhere different.
+
 ## FAQ
 
 **Q**: What the hell is a Nilmod? How do I install this? AAAAAAAAAAA??!?!?!!  
-**A**: First of all: you can install NilLoader alongside any other loader (including Forge, ModLoader etc.)! A Nilmod is a mod that is loaded by [NilLoader](https://git.sleeping.town/Nil/NilLoader). You should [install NilLoader](https://git.sleeping.town/Nil/NilLoader#using-nilloader) first and then put LegacyForgeJ8 in either the usual `mods` folder or in the dedicated `nilmods` folder (recommended!) in your Minecraft instance.
+**A**: First of all: you can install NilLoader alongside any other loader (including Forge, ModLoader etc.)! A Nilmod is a mod that is loaded by [NilLoader](https://git.sleeping.town/Nil/NilLoader). You should [install NilLoader](https://git.sleeping.town/Nil/NilLoader#using-nilloader) first and then put LegacyForgeJ8 in either the usual `mods` folder or in the dedicated `nilmods` folder (recommended!) in your Minecraft instance. If you intend to use LegacyForgeJ8 for Minecraft 1.6 or newer, follow the additional setup instructions above as well.
 
 **Q**: Is there a server version of this?  
 **A**: The mod file _should_ work just fine on both client and server.
