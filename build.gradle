@@ -37,6 +37,24 @@ repositories {
     }
 }
 
+sourceSets {
+    java6 {
+    }
+}
+
+tasks.named('compileJava6Java', JavaCompile) {
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+    sourceCompatibility = '1.6'
+    targetCompatibility = '1.6'
+    options.compilerArgs << '-Xlint:-options'
+}
+
+tasks.named('jar') {
+    from sourceSets.java6.output
+}
+
 nil {
     id "legacyforgej8"
     // Set this to false for a smaller JAR that can't be run as a standalone Java agent

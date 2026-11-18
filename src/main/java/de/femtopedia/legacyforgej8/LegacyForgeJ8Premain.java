@@ -2,6 +2,8 @@ package de.femtopedia.legacyforgej8;
 
 import de.femtopedia.legacyforgej8.transformers.api.RelaunchClassLoaderTransformer;
 import de.femtopedia.legacyforgej8.transformers.asm.MethodInsnNodeTransformer;
+import de.femtopedia.legacyforgej8.transformers.asm4warn.FMLPluginWrapperTransformer;
+import de.femtopedia.legacyforgej8.transformers.asm4warn.LoaderTransformer;
 import de.femtopedia.legacyforgej8.transformers.java9.JarDiscovererTransformer;
 import de.femtopedia.legacyforgej8.transformers.jsr.JsrInstructionTransformer;
 import de.femtopedia.legacyforgej8.transformers.libs.CoreFMLLibrariesTransformer;
@@ -44,7 +46,10 @@ public class LegacyForgeJ8Premain implements Runnable {
 
         ClassTransformer.register(new FMLRelauncherTransformer());
 
-        log.info("Java 8 mods are now supported!");
+        ClassTransformer.register(new FMLPluginWrapperTransformer());
+        ClassTransformer.register(new LoaderTransformer());
+
+        log.info("Java 8 mods are now (hopefully) supported!");
 
         ClassTransformer.register(new JarDiscovererTransformer());
 
